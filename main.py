@@ -11,12 +11,18 @@ class Item(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"hello":"arjuna"}
+    return {'data':'blog list'}
 
-@app.get("/items/{item_id}")
-def read_items(item_id:int,q:Optional[str]=None):
-    return {"item_id":item_id,"q":q}
+@app.get('/blog/unpublished')
+def unpublished(id:int):
+    return {'unpublished':True}
 
-@app.put("/items/{item_id}")
-def update_item(item_id:int,item:Item):
-    return {"item_name":item.name,"item_id":item_id}
+@app.get('/blog/{id}')
+def show_item(id:int ):
+    return {'data ':id}
+
+
+
+@app.get('/blog/{id}/comments')
+def show_item(id:int):
+    return {'data':{'comments':id}}
